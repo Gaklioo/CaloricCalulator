@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <windows.h>
 //Constants
 class constants {
 public:
@@ -76,6 +76,14 @@ int main() {
 	std::cin >> gender;
 	std::cout << "Please enter activity level [Sedentary 1, Lightly Active 2, Moderatly Active 3, Very Active 4, Extra Active 5] ";
 	std::cin >> activityLevel;
+
+	if ((activityLevel > 5) || (activityLevel <= 0) || (gender != 'm') || (gender != 'f')){
+		std::cout << "Incorrect activity level or gender enterd, Please retry.";
+		std::cin.clear();
+		Sleep(2000);
+		system("CLS");
+		main();
+	}
 
 	double bmrRes = bmr(weight, heightIn, heightFt, age, gender);
 	double rcc = activityMultiplyer(bmrRes, activityLevel);
